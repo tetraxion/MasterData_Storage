@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             PositionSeeder::class, // Memanggil seeder PositionSeeder
             EmployeeSeeder::class, // Memanggil seeder EmployeeSeeder
-            AdminSeeder::class // Memanggil seeder EmployeeSeeder
+            AdminSeeder::class // Memanggil seeder AdminSeeder
         ]);
 
     }
