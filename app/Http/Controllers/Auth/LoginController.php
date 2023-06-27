@@ -40,6 +40,30 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function login(Request $request)
+    {
+        $pageTitle = "Login"; // Menambahkan variabel $pageTitle
+
+        return view('auth.login')->with('pageTitle', $pageTitle);
+    }
+
+    public function authenticate(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended('home');
+        }
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->withInput(['email']);
+    }
+
     public function logout(Request $request)
     {
         $this->guard()->logout();
