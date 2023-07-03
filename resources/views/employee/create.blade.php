@@ -5,7 +5,7 @@
 
     <div class="container-sm mt-5">
         {{-- Formulir untuk membuat pegawai baru --}}
-        <form action="{{ route('employees.store') }}" method="POST">
+        <form action="{{ route('employees.store') }}" method="POST" enctype="multipart/form-data">
             {{-- Token CSRF untuk keamanan --}}
             @csrf
             <div class="row justify-content-center">
@@ -80,6 +80,10 @@
                         @enderror
                     </div>
 
+                    <div class="col-md-12 mb-3">
+                        <label for="cv" class="form-label">Curriculum Vitae (CV)</label>
+                        <input type="file" class="form-control" name="cv" id="cv">
+                    </div>
                     <hr>
                     <div class="row">
                         {{-- Tombol untuk batal --}}
