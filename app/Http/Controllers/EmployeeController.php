@@ -208,10 +208,16 @@ class EmployeeController extends Controller
         // ELOQUENT
         $employee = Employee::find($id);
 
-        // Hapus file terkait jika ada
+        // kondisi 1 Hapus file terkait tidak menggunakan path jika ada
         if ($employee->encrypted_filename) {
             Storage::delete('public/files/'.$employee->encrypted_filename);
         }
+
+        // // kondisi 2 Hapus file terkait menggunakan path jika ada
+        // if ($employee->encrypted_filename) {
+        //     $path = 'files/'.$employee->encrypted_filename;
+        //     Storage::disk('public')->delete($path);
+        // }
 
         $employee->delete();
 
